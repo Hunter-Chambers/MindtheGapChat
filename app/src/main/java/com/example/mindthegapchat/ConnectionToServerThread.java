@@ -16,6 +16,8 @@ public class ConnectionToServerThread extends Thread implements Runnable {
         try {
             socket = new Socket("10.0.6.1", 8081);
             PrintWriter output = new PrintWriter(socket.getOutputStream());
+            output.write("<SENDING>");
+            output.flush();
 
             while (isAlive()) {
                 if (msg[0] != null) {
