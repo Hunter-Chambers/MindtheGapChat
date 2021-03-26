@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="265dp"
         tools:layout_editor_absoluteY="416dp"
+        android:onClick="tableActivity"
         android:id="@+id/submitButton"/>
 
 
