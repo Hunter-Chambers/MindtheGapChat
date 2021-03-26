@@ -10,6 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button submitButton;
+    View username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
         submitButton = findViewById(R.id.submitButton);
     }
 
-    public void tableActivity(View view) {
+    public void submitUsername(View view) {
         Intent intent = new Intent(getApplicationContext(), ChatMessagesActivity.class);
-        
-
+        username = findViewById(R.id.userUsername);
+        intent.putExtra("USERNAME", String.valueOf(username));
         startActivity(intent);
     }
 }
