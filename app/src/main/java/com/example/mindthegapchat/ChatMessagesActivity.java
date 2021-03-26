@@ -42,7 +42,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
         username = intent.getStringExtra("USERNAME");
         Log.i("HERE", username);
 
-        ConnectionToServerThread connectionToThread = new ConnectionToServerThread(message_array);
+        ConnectionToServerThread connectionToThread = new ConnectionToServerThread(message_array, username);
         connectionToThread.start();
 
         ConnectionFromServerThread connectionFromThread = new ConnectionFromServerThread(ChatMessagesActivity.this, server_messages, scrollview);

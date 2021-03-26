@@ -6,9 +6,11 @@ import java.net.Socket;
 
 public class ConnectionToServerThread extends Thread implements Runnable {
     String[] msg;
+    String username;
 
-    public ConnectionToServerThread(String[] m) {
+    public ConnectionToServerThread(String[] m, String s) {
         msg = m;
+        username = s;
     }
 
     public void run() {
@@ -16,7 +18,7 @@ public class ConnectionToServerThread extends Thread implements Runnable {
         try {
             socket = new Socket("10.0.6.1", 8081);
             PrintWriter output = new PrintWriter(socket.getOutputStream());
-            output.write("<SENDING>");
+            output.write("<SENDING>" + username);
             output.flush();
 
             while (isAlive()) {
