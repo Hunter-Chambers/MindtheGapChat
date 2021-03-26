@@ -12,15 +12,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="60dp"
-        android:onClick="tableActivity"
+        android:onClick="submitUsername"
         android:text="@string/button_submit"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editTextTextPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/userUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"/>
+        app:layout_constraintStart_toEndOf="@+id/userUsername" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/userUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
