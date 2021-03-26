@@ -22,7 +22,12 @@ public class MainActivity extends AppCompatActivity {
     public void submitUsername(View view) {
         Intent intent = new Intent(getApplicationContext(), ChatMessagesActivity.class);
         username = findViewById(R.id.userUsername);
-        intent.putExtra("USERNAME", String.valueOf(username));
+        if (String.valueOf(username).length() == 0) {
+            String anonUsername = "Anonymous";
+            intent.putExtra("USERNAME", anonUsername);
+        } else {
+            intent.putExtra("USERNAME", String.valueOf(username));
+        }
         startActivity(intent);
     }
 }
