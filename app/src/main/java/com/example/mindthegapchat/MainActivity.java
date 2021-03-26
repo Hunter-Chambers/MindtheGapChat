@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void tableActivity(View view) {
         Intent intent = new Intent(getApplicationContext(), ChatMessagesActivity.class);
+        
+
         startActivity(intent);
     }
 }

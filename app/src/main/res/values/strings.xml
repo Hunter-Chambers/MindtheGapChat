@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Mind the Gap Chat</string>
+    <string name="username_entry">Enter a username</string>
+    <string name="button_submit">Submit</string>
+    <string name="home_title">Welcome to the Mind the Gap Chat!</string>
+    <string name="home_info">Please enter a username to begin chatting! Leave username blank to remain anonymous.</string>
 </resources>
