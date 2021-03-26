@@ -39,6 +39,9 @@ public class ChatMessagesActivity extends AppCompatActivity {
 
         username = intent.getStringExtra("USERNAME");
         Log.i("HERE", username);
+
+        ConnectionFromServerThread connectionThread = new ConnectionFromServerThread(ChatMessagesActivity.this, server_messages, scrollview);
+        connectionThread.start();
     }
 
     public void sendMessage(View view) {
@@ -47,12 +50,13 @@ public class ChatMessagesActivity extends AppCompatActivity {
         message.setText(message_to_send.getText().toString());
         message.setTextColor(Color.BLACK);
         message.setTextSize(25);
+        message.setPadding(40, 40, 40, 40);
 
         LinearLayout container = new LinearLayout(this);
         container.setOrientation(LinearLayout.HORIZONTAL);
         container.setWeightSum(1);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, 0, 0, 20);
+        params.setMargins(0, 0, 0, 40);
         container.setLayoutParams(params);
 
         message.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 0.5f));
