@@ -14,6 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.net.Socket;
+
 public class ChatMessagesActivity extends AppCompatActivity {
 
     Intent intent;
@@ -26,6 +29,8 @@ public class ChatMessagesActivity extends AppCompatActivity {
     String username;
 
     String[] message_array = {null};
+
+    Socket socket = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +47,27 @@ public class ChatMessagesActivity extends AppCompatActivity {
         username = intent.getStringExtra("USERNAME");
         Log.i("HERE", username);
 
-        ConnectionToServerThread connectionToThread = new ConnectionToServerThread(message_array);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    socket = new Socket("10.0.6.1", 8081);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ConnectionToServerThread connectionToThread = new ConnectionToServerThread(message_array, socket);
         connectionToThread.start();
 
-        ConnectionFromServerThread connectionFromThread = new ConnectionFromServerThread(ChatMessagesActivity.this, server_messages, scrollview);
+        ConnectionFromServerThread connectionFromThread = new ConnectionFromServerThread(ChatMessagesActivity.this, server_messages, scrollview, socket);
         connectionFromThread.start();
     }
 

@@ -2,6 +2,7 @@ package com.example.mindthegapchat;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +19,17 @@ public class ConnectionFromServerThread extends Thread implements Runnable {
     Activity activity;
     LinearLayout server_messages;
     ScrollView scrollview;
+    Socket socket;
 
-    public ConnectionFromServerThread(Activity a, LinearLayout s, ScrollView sv) {
+    public ConnectionFromServerThread(Activity a, LinearLayout ll, ScrollView sv, Socket s) {
         activity = a;
-        server_messages = s;
+        server_messages = ll;
         scrollview = sv;
+        socket = s;
     }
 
     public void run() {
-        Socket socket;
         try {
-            socket = new Socket("10.0.6.1", 8081);
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             while (isAlive()) {
