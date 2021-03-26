@@ -23,7 +23,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
     LinearLayout server_messages;
     EditText message_to_send;
 
-    String username, ipv4;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +38,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
         message_to_send = findViewById(R.id.message_field);
 
         username = intent.getStringExtra("USERNAME");
-        ipv4 = intent.getStringExtra("IPv4");
         Log.i("HERE", username);
-        Log.i("HERE", ipv4);
     }
 
     public void sendMessage(View view) {
