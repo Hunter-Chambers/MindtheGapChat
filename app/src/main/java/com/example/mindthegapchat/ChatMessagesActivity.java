@@ -25,6 +25,8 @@ public class ChatMessagesActivity extends AppCompatActivity {
 
     String username;
 
+    String[] message_array = {null};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +42,11 @@ public class ChatMessagesActivity extends AppCompatActivity {
         username = intent.getStringExtra("USERNAME");
         Log.i("HERE", username);
 
-        ConnectionFromServerThread connectionThread = new ConnectionFromServerThread(ChatMessagesActivity.this, server_messages, scrollview);
-        connectionThread.start();
+        ConnectionToServerThread connectionToThread = new ConnectionToServerThread(message_array);
+        connectionToThread.start();
+
+        ConnectionFromServerThread connectionFromThread = new ConnectionFromServerThread(ChatMessagesActivity.this, server_messages, scrollview);
+        connectionFromThread.start();
     }
 
     public void sendMessage(View view) {
@@ -66,5 +71,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
 
         server_messages.addView(container);
         scrollview.post(() -> scrollview.fullScroll(View.FOCUS_DOWN));
+
+        message_array[0] = message_to_send.getText().toString();
     }
 }
