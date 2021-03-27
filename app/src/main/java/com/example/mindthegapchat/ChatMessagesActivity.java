@@ -48,7 +48,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
     public void sendMessage(View view) {
         String temp = String.format(message_to_send.getText().toString());
 
-        ChatBubble bubble = new ChatBubble(this, server_messages, scrollview, temp, true);
+        ChatBubble bubble = new ChatBubble(this, server_messages, scrollview, username + ":" + temp, true);
         bubble.createBubble();
 
         message_array[0] = temp;
