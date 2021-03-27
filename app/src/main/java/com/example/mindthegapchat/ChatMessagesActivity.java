@@ -46,9 +46,12 @@ public class ChatMessagesActivity extends AppCompatActivity {
     }
 
     public void sendMessage(View view) {
-        ChatBubble bubble = new ChatBubble(this, server_messages, scrollview, message_to_send.getText().toString(), true);
+        String temp = String.format(message_to_send.getText().toString());
+
+        ChatBubble bubble = new ChatBubble(this, server_messages, scrollview, temp, true);
         bubble.createBubble();
 
-        message_array[0] = message_to_send.getText().toString();
+        message_array[0] = temp;
+        message_to_send.getText().clear();
     }
 }
