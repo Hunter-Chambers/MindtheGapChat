@@ -65,6 +65,5 @@ public class ChatBubble {
 
         server_messages.addView(title);
         server_messages.addView(container);
-        scrollview.post(() -> scrollview.fullScroll(View.FOCUS_DOWN));
     }
 }

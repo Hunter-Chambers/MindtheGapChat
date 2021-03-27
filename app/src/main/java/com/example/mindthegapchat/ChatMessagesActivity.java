@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -18,6 +19,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
 
     LinearLayout server_messages;
     EditText message_to_send;
+    Button send_button;
 
     String username;
 
@@ -34,6 +36,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
 
         server_messages = findViewById(R.id.server_messages);
         message_to_send = findViewById(R.id.message_field);
+        send_button = findViewById(R.id.send_message);
 
         username = intent.getStringExtra("USERNAME");
         Log.i("HERE", username);
@@ -48,10 +51,14 @@ public class ChatMessagesActivity extends AppCompatActivity {
     public void sendMessage(View view) {
         String temp = String.format(message_to_send.getText().toString());
 
-        ChatBubble bubble = new ChatBubble(this, server_messages, scrollview, username + ":" + temp, true);
-        bubble.createBubble();
+        if (temp.length() > 0) {
+            ChatBubble bubble = new ChatBubble(this, server_messages, scrollview, username + ":" + temp, true);
+            bubble.createBubble();
 
-        message_array[0] = temp;
-        message_to_send.getText().clear();
+            scrollview.post(() -> scrollview.fullScroll(View.FOCUS_DOWN));
+
+            message_array[0] = temp;
+            message_to_send.getText().clear();
+        }
     }
 }
