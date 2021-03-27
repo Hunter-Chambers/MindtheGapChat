@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,16 +19,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         submitButton = findViewById(R.id.submitButton);
+        usernameObj = findViewById(R.id.userUsername);
     }
 
     public void submitUsername(View view) {
-        Intent intent = new Intent(getApplicationContext(), ChatMessagesActivity.class);
-
-        usernameObj = findViewById(R.id.userUsername);
         username = usernameObj.getText().toString();
-        if (username.length() == 0) username = "Anonymous";
+        if (!(username.contains(":"))) {
 
-        intent.putExtra("USERNAME", username);
-        startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), ChatMessagesActivity.class);
+
+            if (username.length() == 0) username = "Anonymous";
+            intent.putExtra("USERNAME", username);
+            startActivity(intent);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Username cannot contain a colon.", Toast.LENGTH_SHORT);
+            //toast.setMargin(); NEED TO FIX MARGINS LATER, TOAST APPEARS IN BAD LOCATION
+            toast.show();
+        }
     }
 }

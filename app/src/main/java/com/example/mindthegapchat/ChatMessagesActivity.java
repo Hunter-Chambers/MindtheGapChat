@@ -50,9 +50,10 @@ public class ChatMessagesActivity extends AppCompatActivity {
     }
 
     public void sendMessage(View view) {
+        String temp = String.format(message_to_send.getText().toString());
         TextView message = new TextView(this);
         message.setBackgroundColor(Color.argb(255, 217, 217, 217));
-        message.setText(message_to_send.getText().toString());
+        message.setText(temp);
         message.setTextColor(Color.BLACK);
         message.setTextSize(25);
         message.setPadding(40, 40, 40, 40);
@@ -72,6 +73,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
         server_messages.addView(container);
         scrollview.post(() -> scrollview.fullScroll(View.FOCUS_DOWN));
 
-        message_array[0] = message_to_send.getText().toString();
+        message_array[0] = temp;
+        message_to_send.getText().clear();
     }
 }
